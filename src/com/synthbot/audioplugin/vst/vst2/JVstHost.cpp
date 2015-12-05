@@ -54,7 +54,7 @@ jmethodID mmGetMessage;
 /**
  * A struct to hold locally cached variables for the host
  */
-typedef struct hostLocalVars {
+typedef struct hostLocalVars_t {
   jobject jVstHost2;
   float **fInputs;
   float **fOutputs;
@@ -68,7 +68,7 @@ typedef struct hostLocalVars {
   void *nativeEditorWindow;
   int timeSigNumerator;
   int timeSigDenominator;
-};
+} hostLocalVars;
 
 /**
  * Can be extended in the future if we find that resvd1 is being overwritten by some plugins.
