@@ -436,10 +436,6 @@ void opcode2string(VstInt32 opcode, VstIntPtr value, JNIEnv *env) {
       message = env->NewStringUTF("audioMasterCloseFileSelector");
       break;
     }
-    case audioMasterWantMidi: {
-      message = env->NewStringUTF("audioMasterWantMidi: DEPRECATED in VST 2.4");
-      break;
-    }
     default: {
       char *str = (char *) malloc(sizeof(char) * 100);
       sprintf(str, "Opcode not recognized: %i", opcode);
