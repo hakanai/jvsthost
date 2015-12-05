@@ -528,41 +528,41 @@ VstIntPtr VSTCALLBACK HostCallback (AEffect *effect, VstInt32 opcode, VstInt32 i
         vti->samplePos = 0.0;
         vti->sampleRate = hostVars->sampleRate;
         vti->flags = 0;
-        if (value & kVstNanosValid != 0) { // bit 8
+        if ((value & kVstNanosValid) != 0) { // bit 8
           // Live returns this...
           vti->nanoSeconds = 0.0;
           vti->flags |= kVstNanosValid;
         }
-        if (value & kVstPpqPosValid != 0) { // bit 9
+        if ((value & kVstPpqPosValid) != 0) { // bit 9
           //vti->ppqPos = (vti->samplePos/vti->sampleRate) * (TEMPO_BPM/60.0);
           vti->ppqPos = 0.0;
           vti->flags |= kVstPpqPosValid;
         }
-        if (value & kVstTempoValid != 0) { // bit 10
+        if ((value & kVstTempoValid) != 0) { // bit 10
           vti->tempo = hostVars->tempo;
           vti->flags |= kVstTempoValid;
         }
-        if (value & kVstBarsValid != 0) { // bit 11
+        if ((value & kVstBarsValid) != 0) { // bit 11
           // Live returns this...
           vti->barStartPos = 0.0;
           vti->flags |= kVstBarsValid;
         }
-        if (value & kVstCyclePosValid != 0) { // bit 12
+        if ((value & kVstCyclePosValid) != 0) { // bit 12
           // Live returns this...
           vti->cycleStartPos = 0.0;
           vti->cycleEndPos = 0.0;
           vti->flags |= kVstCyclePosValid;
         }
-        if (value & kVstTimeSigValid != 0) { // bit 13
+        if ((value & kVstTimeSigValid) != 0) { // bit 13
           vti->timeSigNumerator = hostVars->timeSigNumerator;
           vti->timeSigDenominator = hostVars->timeSigDenominator;
           vti->flags |= kVstTimeSigValid;
         }
-        if (value & kVstSmpteValid != 0) { // bit 14
+        if ((value & kVstSmpteValid) != 0) { // bit 14
           //vti->smpteFrameRate = kVstSmpte24fps; // return something!???
           //vti->flags |= kVstSmpteValid;
         }
-        if (value & kVstClockValid != 0) { // bit 15
+        if ((value & kVstClockValid) != 0) { // bit 15
           // Live returns this...
           vti->samplesToNextClock = 0;
           vti->flags |= kVstClockValid;
