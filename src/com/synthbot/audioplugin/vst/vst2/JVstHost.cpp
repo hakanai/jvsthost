@@ -327,7 +327,7 @@ void opcode2string(VstInt32 opcode, VstIntPtr value, JNIEnv *env) {
     }
     case audioMasterGetTime: {      
       char *str = (char *) malloc(sizeof(char) * 100);
-      sprintf(str, "audioMasterGetTime: 0x%X", value);
+      sprintf(str, "audioMasterGetTime: 0x%llX", value);
       message = env->NewStringUTF(str);
       free(str);
       break;
