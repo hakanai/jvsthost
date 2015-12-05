@@ -75,7 +75,7 @@ typedef struct hostLocalVars {
  */
 bool isHostLocalVarsValid(AEffect *effect) {
   if (effect != NULL) {
-    return (effect->resvd1 != NULL);
+    return (effect->resvd1 != 0);
   } else {
     return false;
   }
@@ -765,7 +765,7 @@ VstIntPtr VSTCALLBACK HostCallback (AEffect *effect, VstInt32 opcode, VstInt32 i
         #endif 
       }
       */
-      return NULL;
+      return 0;
     }
     
     case audioMasterUpdateDisplay: {
@@ -996,7 +996,7 @@ JNIEXPORT void JNICALL Java_com_synthbot_audioplugin_vst_vst2_JVstHost2_unloadPl
         free(hostVars->vti);
       }
       free(hostVars);
-      effect->resvd1 = NULL;
+      effect->resvd1 = 0;
       
       // close the plugin
       effect->dispatcher (effect, effClose, 0, 0, 0, 0);
@@ -1183,7 +1183,7 @@ VstEvents *setMidiEvents(JNIEnv *env, jobjectArray midiMessages, AEffect* effect
     vstes = (VstEvents *) malloc(sizeof(VstEvents) + (numMessages-2)*sizeof(VstEvent *));
   }
   vstes->numEvents = numMessages;
-  vstes->reserved = NULL;
+  vstes->reserved = 0;
   VstEvent *vste;
   VstMidiEvent *vstme;
   VstMidiSysexEvent *vstmse;
@@ -1220,8 +1220,8 @@ VstEvents *setMidiEvents(JNIEnv *env, jobjectArray midiMessages, AEffect* effect
       memcpy(vstme->midiData, messageArray, messageArrayLength); // set the midiData array
       vstme->detune = 0;                      //< -64 to +63 cents; for scales other than 'well-tempered' ('microtuning')
       vstme->noteOffVelocity = 0;             //< Note Off Velocity [0, 127]
-      vstme->reserved1 = 0;                   //< zero (Reserved for future use)
-      vstme->reserved2 = 0;                   //< zero (Reserved for future use)
+      vstme->reserved1 = (VstIntPtr) 0;       //< zero (Reserved for future use)
+      vstme->reserved2 = (VstIntPtr) 0;       //< zero (Reserved for future use)
       env->ReleasePrimitiveArrayCritical(jmessageArray, messageArray, JNI_ABORT);
     }
     
